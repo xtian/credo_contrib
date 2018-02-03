@@ -1,0 +1,17 @@
+%{
+  configs: [
+    %{
+      name: "default",
+      files: %{
+        included: ["config/", "lib/", "src/"],
+        excluded: [~r"/_build/", ~r"/deps/"]
+      },
+      strict: true,
+      color: true,
+      checks: [
+        {Credo.Check.Design.AliasUsage, false},
+        {Credo.Check.Readability.MaxLineLength, max_length: 100}
+      ]
+    }
+  ]
+}
