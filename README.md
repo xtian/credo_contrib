@@ -1,4 +1,4 @@
-# CredoContrib
+# CredoContrib [![Build Status](https://travis-ci.org/xtian/credo_contrib.svg?branch=master)](https://travis-ci.org/xtian/credo_contrib)
 
 **TODO: Add description**
 
