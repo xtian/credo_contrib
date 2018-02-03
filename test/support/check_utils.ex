@@ -20,7 +20,7 @@ defmodule CredoContrib.CheckUtils do
   def assert_issue(source_file, check \\ nil, params \\ [], callback \\ nil) do
     issues = issues_for(source_file, check, create_config(), params)
 
-    Assertions.refute(Enum.count(issues) == 0, "There should be one issue, got none.")
+    Assertions.refute(Enum.empty?(issues), "There should be one issue, got none.")
 
     Assertions.assert(
       Enum.count(issues) == 1,

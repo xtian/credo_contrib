@@ -5,4 +5,5 @@ elixir:
 otp_release:
   - 20.2
 script:
+  - mix credo --strict
   - mix test
