@@ -9,6 +9,31 @@ defmodule CredoContrib.CheckUtils do
   alias Credo.SourceFile
   alias ExUnit.Assertions
 
+  def assert_issue(source_file, callback) when is_function(callback) do
+    assert_issue(source_file, nil, [], callback)
+  end
+
+  def assert_issue(source_file, check, callback) when is_function(callback) do
+    assert_issue(source_file, check, [], callback)
+  end
+
+  def assert_issue(source_file, check \\ nil, params \\ [], callback \\ nil) do
+    issues = issues_for(source_file, check, create_config(), params)
+
+    Assertions.refute(Enum.count(issues) == 0, "There should be one issue, got none.")
+
+    Assertions.assert(
+      Enum.count(issues) == 1,
+      "There should be only 1 issue, got #{Enum.count(issues)}: #{to_inspected(issues)}"
+    )
+
+    if callback do
+      issues |> List.first() |> callback.()
+    end
+
+    issues
+  end
+
   def assert_issues(source_file, callback) when is_function(callback) do
     assert_issues(source_file, nil, [], callback)
   end
