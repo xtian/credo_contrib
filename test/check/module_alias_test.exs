@@ -13,7 +13,7 @@ defmodule CredoContrib.Check.ModuleAliasTest do
     |> refute_issues(@described_check)
   end
 
-  test "reports issue alias" do
+  test "reports issue for alias" do
     """
     alias __MODULE__
     """
