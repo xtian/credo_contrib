@@ -1,3 +1,4 @@
+# credo:disable-for-this-file Credo.Check.Readability.StringSigils
 defmodule CredoContrib.Check.DocWhitespaceTest do
   use CredoContrib.TestCase, async: true
 
