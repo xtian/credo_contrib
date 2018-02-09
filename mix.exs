@@ -1,14 +1,30 @@
 defmodule CredoContrib.MixProject do
   use Mix.Project
 
+  @github_url "https://github.com/xtian/credo_contrib"
+  @version "0.1.0-rc1"
+
   def project do
     [
       app: :credo_contrib,
-      version: "0.1.0-rc1",
+      version: @version,
       elixir: "~> 1.6",
       elixirc_paths: elixirc_paths(Mix.env()),
       start_permanent: Mix.env() == :prod,
-      deps: deps()
+      deps: deps(),
+
+      # Hex
+      description: description(),
+      package: package(),
+
+      # Docs
+      name: "CredoContrib",
+      docs: [
+        main: "readme",
+        extras: ["README.md"],
+        source_ref: "v#{@version}",
+        source_url: @github_url
+      ]
     ]
   end
 
@@ -26,7 +42,24 @@ defmodule CredoContrib.MixProject do
   # Run "mix help deps" to learn about dependencies.
   defp deps do
     [
-      {:credo, "~> 0.9.0-rc"}
+      {:credo, "~> 0.9.0-rc"},
+      {:ex_doc, ">= 0.0.0", only: :dev}
+    ]
+  end
+
+  def description do
+    """
+    A set of community-maintained checks for the Credo static analysis tool.
+    Many of the checks are implementations of rules from
+    https://github.com/christopheradams/elixir_style_guide.
+    """
+  end
+
+  def package do
+    [
+      maintainers: ["Christian Wesselhoeft"],
+      licenses: ["ISC"],
+      links: %{"GitHub" => @github_url}
     ]
   end
 end
