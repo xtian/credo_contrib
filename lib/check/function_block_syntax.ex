@@ -9,7 +9,7 @@ defmodule CredoContrib.Check.FunctionBlockSyntax do
     check: @moduledoc,
     params: [
       allow_single_kw_defs:
-        "Set to `false` only allow `def …, do:` syntax for functions with multiple heads"
+        "Set to `false` to only allow `def …, do:` syntax for functions with multiple heads"
     ]
   ]
 
