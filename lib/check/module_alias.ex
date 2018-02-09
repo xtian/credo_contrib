@@ -1,6 +1,6 @@
 defmodule CredoContrib.Check.ModuleAlias do
   @moduledoc """
-  Detects usage of `alias __MODULE__` or `@foo __MODULE__`
+  `alias __MODULE__` and `@foo __MODULE__` are not allowed
 
   https://github.com/christopheradams/elixir_style_guide#module-pseudo-variable
   """
