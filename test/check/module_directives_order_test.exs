@@ -18,6 +18,11 @@ defmodule CredoContrib.Check.ModuleDirectivesOrderTest do
       @callback bar :: t
       @macrocallback
       @optional_callbacks
+
+      defmodule Foo do
+        @moduledoc false
+        use Baz
+      end
     end
     """
     |> to_source_file()
@@ -39,9 +44,14 @@ defmodule CredoContrib.Check.ModuleDirectivesOrderTest do
       @module_attribute foo
       @macrocallback
       @optional_callbacks
+
+      defmodule Foo do
+        use Baz
+        @moduledoc false
+      end
     end
     """
     |> to_source_file()
-    |> assert_issue(@described_check)
+    |> assert_issues(@described_check)
   end
 end

@@ -55,32 +55,40 @@ defmodule CredoContrib.Check.ModuleDirectivesOrder do
                    |> Enum.join(", ")
 
   def run(source_file, params \\ []) do
-    with {:ok, ast} <- Credo.Code.ast(source_file),
-         {:ok, module_body} <- module_body(ast) do
-      issue_meta = IssueMeta.for(source_file, params)
+    issue_meta = IssueMeta.for(source_file, params)
+    Credo.Code.prewalk(source_file, &traverse(&1, &2, issue_meta))
+  end
 
-      directives =
-        module_body
-        |> Enum.reduce([], &find_directives/2)
-        |> Enum.reverse()
+  defp traverse({:defmodule, _, [_, [do: {:__block__, _, module_body}]]} = ast, acc, issue_meta) do
+    case first_unordered_directive(module_body) do
+      nil ->
+        {ast, acc}
 
-      sorted_directives =
-        Enum.sort_by(directives, fn {name, _} ->
-          Map.fetch!(@order, name)
-        end)
+      {_, directive_meta} ->
+        {ast, [issue_for(issue_meta, directive_meta[:line]) | acc]}
+    end
+  end
 
-      if directives == sorted_directives do
-        []
-      else
-        [{{_, first_failing_meta}, _} | _] =
-          [directives, sorted_directives]
-          |> Enum.zip()
-          |> Enum.drop_while(fn {a, b} -> a == b end)
+  defp traverse(ast, acc, _) do
+    {ast, acc}
+  end
 
-        [issue_for(issue_meta, first_failing_meta[:line])]
-      end
+  defp first_unordered_directive(module_body) do
+    directives = Enum.reduce(module_body, [], &find_directives/2)
+
+    sorted_directives =
+      Enum.sort_by(directives, fn {name, _} -> Map.fetch!(@order, name) * -1 end)
+
+    if directives == sorted_directives do
+      nil
     else
-      _ -> []
+      [{directive, _} | _] =
+        [directives, sorted_directives]
+        |> Enum.zip()
+        |> Enum.reverse()
+        |> Enum.drop_while(fn {a, b} -> a == b end)
+
+      directive
     end
   end
 
@@ -106,13 +114,5 @@ defmodule CredoContrib.Check.ModuleDirectivesOrder do
       line_no: line_no,
       trigger: nil
     )
-  end
-
-  def module_body({:defmodule, _, [_, [do: {:__block__, _, body}]]}) do
-    {:ok, body}
-  end
-
-  def module_body(_) do
-    {:error, :no_module}
   end
 end
