@@ -33,7 +33,7 @@ defmodule CredoContrib.Check.DocWhitespace do
   defp issue_for(issue_meta, line_no, trigger) do
     format_issue(
       issue_meta,
-      message: "Extra whitespace in docstring",
+      message: "Extra whitespace in documentation",
       line_no: line_no,
       trigger: trigger
     )
