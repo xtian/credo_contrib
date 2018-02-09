@@ -1,10 +1,12 @@
-# CredoContrib [![Build Status][travis-badge]][travis]
+# CredoContrib [![Build Status][travis-badge]][travis] [![Hex][hex-badge]][hex]
 
 CredoContrib is a set of community-maintained checks for the [Credo static
 analysis tool][credo]. Many of the checks are implementations of rules from
 [christopheradams/elixir_style_guide][styleguide].
 
 [credo]: https://github.com/rrrene/credo
+[hex-badge]: https://img.shields.io/hexpm/v/credo_contrib.svg
+[hex]: https://hex.pm/packages/credo_contrib
 [styleguide]: https://github.com/christopheradams/elixir_style_guide
 [travis-badge]: https://travis-ci.org/xtian/credo_contrib.svg?branch=master
 [travis]: https://travis-ci.org/xtian/credo_contrib
@@ -16,7 +18,7 @@ Add `credo_contrib` to the list of dependencies in your `mix.exs`:
 ```elixir
 def deps do
   [
-    {:credo_contrib, "~> 0.1.0"}
+    {:credo_contrib, "~> 0.1.0-rc"}
   ]
 end
 ```
