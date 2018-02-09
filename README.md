@@ -81,7 +81,7 @@ defmodule Foo do
 end
 ```
 
-### CredoContrib.Check.FunctionBlockSyntax
+### `CredoContrib.Check.FunctionBlockSyntax`
 
 Disallows mixing of `def …, do:` syntax with multiple `def … do … end`-style
 definitions
@@ -93,19 +93,19 @@ https://github.com/christopheradams/elixir_style_guide#multiple-function-defs
 * `allow_single_kw_defs` : Set to `false` to only allow `def …, do:` syntax for
   functions with multiple heads
 
-### CredoContrib.Check.ModuleAlias
+### `CredoContrib.Check.ModuleAlias`
 
 Disallows `alias __MODULE__` and `@foo __MODULE__`
 
 https://github.com/christopheradams/elixir_style_guide#module-pseudo-variable
 
-### CredoContrib.Check.ModuleDirectivesOrder
+### `CredoContrib.Check.ModuleDirectivesOrder`
 
 Enforces consistent ordering for module attributes and directives.
 
 https://github.com/christopheradams/elixir_style_guide#module-attribute-ordering
 
-### CredoContrib.Check.ModuleFilePath
+### `CredoContrib.Check.ModuleFilePath`
 
 Enforces a consistent naming scheme for modules based on their file path
 
@@ -129,10 +129,9 @@ end
 # lib/utils/foo.ex
 defmodule SomeApp.Foo do
 end
-
 ```
 
-### CredoContrib.Check.SingleFunctionPipe
+### `CredoContrib.Check.SingleFunctionPipe`
 
 Disallows usage of the pipe operator with only a single function call.
 
