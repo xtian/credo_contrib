@@ -1,26 +1,32 @@
 defmodule CredoContrib.Check.FunctionBlockSyntax do
   @moduledoc """
-  `def …, do:` syntax should only be used for functions with multiple heads and
-  should not be mixed with multiple `do … end`-style definitions.
+  `def …, do:` syntax should not be mixed with multiple `def … do … end`-style definitions.
 
   https://github.com/christopheradams/elixir_style_guide#multiple-function-defs
   """
 
   @explanation [
-    check: @moduledoc
+    check: @moduledoc,
+    params: [
+      allow_single_kw_defs:
+        "Set to `false` only allow `def …, do:` syntax for functions with multiple heads"
+    ]
   ]
+
+  @default_params [allow_single_kw_defs: true]
 
   use Credo.Check, base_priority: :high, category: :readability
 
   def run(source_file, params \\ []) do
     issue_meta = IssueMeta.for(source_file, params)
+    allow_single_kw_defs? = Params.get(params, :allow_single_kw_defs, @default_params)
 
     source_file
     |> Credo.Code.to_tokens()
     |> collect_definitions(%{})
     |> Enum.reduce([], fn
       {{_, name}, %{long: long, short: _, line_no: line_no}}, issues when long > 1 ->
-        new_issue = issue_for(issue_meta, line_no, name)
+        new_issue = issue_for(:mixed_defs, issue_meta, line_no, name)
 
         [new_issue | issues]
 
@@ -28,9 +34,13 @@ defmodule CredoContrib.Check.FunctionBlockSyntax do
         issues
 
       {{_, name}, %{short: 1, line_no: line_no}}, issues ->
-        new_issue = issue_for(issue_meta, line_no, name)
+        if allow_single_kw_defs? do
+          issues
+        else
+          new_issue = issue_for(:single_kw_def, issue_meta, line_no, name)
 
-        [new_issue | issues]
+          [new_issue | issues]
+        end
 
       _, issues ->
         issues
@@ -83,12 +93,20 @@ defmodule CredoContrib.Check.FunctionBlockSyntax do
     end
   end
 
-  defp issue_for(issue_meta, line_no, trigger) do
+  defp issue_for(:mixed_defs, issue_meta, line_no, trigger) do
     format_issue(
       issue_meta,
       message:
-        "`def …, do:` syntax should only be used for functions with multiple heads " <>
-          "and should not be mixed with multiple `do … end`-style definitions",
+        "`def …, do:` syntax should not be mixed with multiple `def … do … end`-style definitions",
+      line_no: line_no,
+      trigger: trigger
+    )
+  end
+
+  defp issue_for(:single_kw_def, issue_meta, line_no, trigger) do
+    format_issue(
+      issue_meta,
+      message: "`def …, do:` syntax should only be used for functions with multiple heads",
       line_no: line_no,
       trigger: trigger
     )

@@ -18,14 +18,14 @@ defmodule CredoContrib.Check.FunctionBlockSyntaxTest do
     |> refute_issues(@described_check)
   end
 
-  test "reports issue for single `do:` definition" do
+  test "does not reports issue for single `do:` definition by default" do
     """
     def foo, do: :foo
 
     defp foo, do: :bar
     """
     |> to_source_file()
-    |> assert_issues(@described_check)
+    |> refute_issues(@described_check)
   end
 
   test "reports issue for mixed `do:` and `do … end` definitions" do
@@ -42,5 +42,15 @@ defmodule CredoContrib.Check.FunctionBlockSyntaxTest do
     """
     |> to_source_file()
     |> assert_issue(@described_check)
+  end
+
+  test "reports issue for single `do:` definition" do
+    """
+    def foo(_, _), do: :foo
+
+    defp foo, do: :bar
+    """
+    |> to_source_file()
+    |> assert_issues(@described_check, allow_single_kw_defs: false)
   end
 end
