@@ -1,6 +1,6 @@
 defmodule CredoContrib.Check.ModuleFilePath do
   @moduledoc """
-  Checks that a module's name matches its file path
+  A module's name should match its file path
   """
 
   @explanation [
