@@ -1,11 +1,17 @@
-# CredoContrib [![Build Status](https://travis-ci.org/xtian/credo_contrib.svg?branch=master)](https://travis-ci.org/xtian/credo_contrib)
+# CredoContrib [![Build Status][travis-badge]][travis]
 
-**TODO: Add description**
+CredoContrib is a set of community-maintained checks for the [Credo static
+analysis tool][credo]. Many of the checks are implementations of rules from
+[christopheradams/elixir_style_guide][styleguide].
+
+[credo]: https://github.com/rrrene/credo
+[styleguide]: https://github.com/christopheradams/elixir_style_guide
+[travis-badge]: https://travis-ci.org/xtian/credo_contrib.svg?branch=master
+[travis]: https://travis-ci.org/xtian/credo_contrib
 
 ## Installation
 
-If [available in Hex](https://hex.pm/docs/publish), the package can be installed
-by adding `credo_contrib` to your list of dependencies in `mix.exs`:
+Add `credo_contrib` to the list of dependencies in your `mix.exs`:
 
 ```elixir
 def deps do
@@ -15,7 +21,119 @@ def deps do
 end
 ```
 
-Documentation can be generated with [ExDoc](https://github.com/elixir-lang/ex_doc)
-and published on [HexDocs](https://hexdocs.pm). Once published, the docs can
-be found at [https://hexdocs.pm/credo_contrib](https://hexdocs.pm/credo_contrib).
+## Usage
 
+Add the desired checks to your `.credo.exs`:
+
+```elixir
+%{
+  configs: [
+    %{
+      name: "default",
+      checks: [
+        {CredoContrib.Check.FunctionBlockSyntax, allow_single_kw_defs: false},
+        # …
+      ]
+    }
+  ]
+}
+```
+
+### Available Checks
+
+#### `CredoContrib.Check.DocWhitespace`
+
+Disallows extranneous whitespace in documentation strings:
+
+```elixir
+# GOOD
+
+defmodule Foo do
+  @moduledoc """
+  This is a module
+  """
+
+  @doc """
+  This is a function
+  """
+  def bar do
+    :ok
+  end
+end
+
+# BAD
+
+defmodule Foo do
+  @moduledoc """
+
+  This is a module
+
+  """
+
+  @doc """
+
+  This is a function
+
+  """
+  def bar do
+    :ok
+  end
+end
+```
+
+#### CredoContrib.Check.FunctionBlockSyntax
+
+Disallows mixing of `def …, do:` syntax with multiple `def … do … end`-style
+definitions
+
+https://github.com/christopheradams/elixir_style_guide#multiple-function-defs
+
+##### Options
+
+* `allow_single_kw_defs` : Set to `false` to only allow `def …, do:` syntax for
+  functions with multiple heads
+
+#### CredoContrib.Check.ModuleAlias
+
+Disallows `alias __MODULE__` and `@foo __MODULE__`
+
+https://github.com/christopheradams/elixir_style_guide#module-pseudo-variable
+
+#### CredoContrib.Check.ModuleDirectivesOrder
+
+Enforces consistent ordering for module attributes and directives.
+
+https://github.com/christopheradams/elixir_style_guide#module-attribute-ordering
+
+#### CredoContrib.Check.ModuleFilePath
+
+Enforces a consistent naming scheme for modules based on their file path
+
+```elixir
+# GOOD
+
+# lib/foo/bar.ex
+defmodule SomeApp.Foo.Bar do
+end
+
+# lib/controllers/bar_controller.ex
+defmodule SomeApp.BarController do
+end
+
+# BAD
+
+# lib/foo/bar/bar.ex
+defmodule SomeApp.Foo.Bar do
+end
+
+# lib/utils/foo.ex
+defmodule SomeApp.Foo do
+end
+
+```
+
+#### CredoContrib.Check.SingleFunctionPipe
+
+Disallows usage of the pipe operator with only a single function call.
+
+https://github.com/christopheradams/elixir_style_guide#avoid-single-pipelines
