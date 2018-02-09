@@ -4,7 +4,7 @@ defmodule CredoContrib.MixProject do
   def project do
     [
       app: :credo_contrib,
-      version: "0.1.0",
+      version: "0.1.0-rc1",
       elixir: "~> 1.6",
       elixirc_paths: elixirc_paths(Mix.env()),
       start_permanent: Mix.env() == :prod,
