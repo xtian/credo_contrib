@@ -66,12 +66,30 @@ defmodule CredoContrib.Check.ModuleFilePathTest do
     |> refute_issues(@described_check)
   end
 
+  test "does not report for test module name using plural convention" do
+    """
+    defmodule SomeLib.FooBarControllerTest do
+    end
+    """
+    |> to_source_file("test/controllers/foo_bar_controller_test.exs")
+    |> refute_issues(@described_check)
+  end
+
   test "does not report issue for conventional test module name in umbrella" do
     """
     defmodule SomeChild.FooBarTest do
     end
     """
     |> to_source_file("apps/some_child/test/foo_bar_test.exs")
+    |> refute_issues(@described_check)
+  end
+
+  test "does not report for test module name using plural convention in umbrella" do
+    """
+    defmodule SomeChild.FooBarControllerTest do
+    end
+    """
+    |> to_source_file("apps/some_child/test/controllers/foo_bar_controller_test.exs")
     |> refute_issues(@described_check)
   end
 
