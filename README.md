@@ -156,3 +156,7 @@ https://github.com/christopheradams/elixir_style_guide#private-functions-with-sa
 Disallows usage of the pipe operator with a single function call
 
 https://github.com/christopheradams/elixir_style_guide#avoid-single-pipelines
+
+#### Options
+
+* `ignored_locals`: Keyword list of names and arities of local functions to ignore. E.g., `[expect: 3, stub: 3]`

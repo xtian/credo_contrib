@@ -9,11 +9,14 @@ defmodule CredoContrib.Check.SingleFunctionPipe do
     check: @moduledoc
   ]
 
+  @default_params [ignored_locals: []]
+
   use Credo.Check, base_priority: :high, category: :readability
 
   def run(source_file, params \\ []) do
     issue_meta = IssueMeta.for(source_file, params)
-    acc = %{issues: [], seen: [], ignored_locals: Keyword.get(params, :ignored_locals, [])}
+    ignored_locals = Params.get(params, :ignored_locals, @default_params)
+    acc = %{issues: [], seen: [], ignored_locals: ignored_locals}
 
     %{issues: issues} = Credo.Code.prewalk(source_file, &traverse(&1, &2, issue_meta), acc)
 
