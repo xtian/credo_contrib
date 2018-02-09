@@ -153,7 +153,7 @@ https://github.com/christopheradams/elixir_style_guide#private-functions-with-sa
 
 #### `CredoContrib.Check.SingleFunctionPipe`
 
-Disallows usage of the pipe operator with only a single function call
+Disallows usage of the pipe operator with a single function call
 
 https://github.com/christopheradams/elixir_style_guide#avoid-single-pipelines
 
