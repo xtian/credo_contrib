@@ -30,6 +30,15 @@ defmodule CredoContrib.Check.ModuleFilePathTest do
     |> refute_issues(@described_check)
   end
 
+  test "does not report for top-level module as lib directory" do
+    """
+    defmodule CredoContrib.Foo.Bar do
+    end
+    """
+    |> to_source_file("lib/credo_contrib/foo/bar.ex")
+    |> refute_issues(@described_check)
+  end
+
   test "does not report for module name using plural convention in umbrella" do
     """
     defmodule SomeChild.FooBarController do
