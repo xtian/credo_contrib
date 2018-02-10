@@ -13,7 +13,7 @@ defmodule CredoContrib.Check.ModuleFilePath do
     issue_meta = IssueMeta.for(source_file, params)
 
     with {:ok, meta, actual_name} <- source_file |> Credo.Code.ast() |> module_name(filename),
-         false <- actual_name in possible_module_names(filename) do
+         false <- filename |> possible_names() |> Enum.any?(&name_matches?(actual_name, &1)) do
       [issue_for(issue_meta, meta[:line])]
     else
       _ -> []
@@ -33,15 +33,7 @@ defmodule CredoContrib.Check.ModuleFilePath do
     if String.ends_with?(filename, "mix.exs") do
       {:error, :mixfile}
     else
-      name_parts =
-        if String.starts_with?(filename, "lib/") || String.starts_with?(filename, "test/") do
-          Enum.drop(name_parts, 1)
-        else
-          name_parts
-        end
-
       name = name_parts |> Enum.map(&Atom.to_string/1) |> Enum.join(".")
-
       {:ok, meta, name}
     end
   end
@@ -50,7 +42,11 @@ defmodule CredoContrib.Check.ModuleFilePath do
     {:error, :no_module}
   end
 
-  defp possible_module_names(filename) do
+  defp name_matches?(actual, possible) do
+    actual == possible || String.ends_with?(actual, ".#{possible}")
+  end
+
+  defp possible_names(filename) do
     parts =
       filename
       |> Path.rootname()
