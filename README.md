@@ -143,6 +143,30 @@ end
 
 ---
 
+#### `CredoContrib.Check.PipelineLineBreaks`
+
+Enforces that each step of a pipeline is either on the same line or on its own
+line
+
+```elixir
+## GOOD
+
+list = "foo,bar" |> String.reverse() |> String.split(",")
+
+list =
+  "foo,bar"
+  |> String.reverse()
+  |> String.split(",")
+
+## BAD
+
+list =
+  "foo,bar" |> String.reverse()
+  |> String.split(",")
+```
+
+---
+
 #### `CredoContrib.Check.PublicPrivateFunctionName`
 
 Disallows public and private functions with the same name
