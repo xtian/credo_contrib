@@ -94,7 +94,7 @@ https://github.com/christopheradams/elixir_style_guide#multiple-function-defs
 
 #### Options
 
-* `allow_single_kw_defs` : Set to `false` to only allow `def …, do:` syntax for
+* `allow_single_kw_defs` (default: `true`): Set to `false` to only allow `def …, do:` syntax for
   functions with multiple heads
 
 ---
