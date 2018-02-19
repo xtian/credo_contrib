@@ -75,6 +75,15 @@ defmodule CredoContrib.Check.ModuleFilePathTest do
     |> refute_issues(@described_check)
   end
 
+  test "does not report for web module name using plural convention" do
+    """
+    defmodule SomeLib.FooBarControllerTest do
+    end
+    """
+    |> to_source_file("web/controllers/foo_bar_controller_test.exs")
+    |> refute_issues(@described_check)
+  end
+
   test "does not report for test module name using plural convention" do
     """
     defmodule SomeLib.FooBarControllerTest do

@@ -51,7 +51,7 @@ defmodule CredoContrib.Check.ModuleFilePath do
       filename
       |> Path.rootname()
       |> String.trim_leading("apps/")
-      |> String.replace(~r"lib/|test/support/|test/", "")
+      |> String.replace(~r"lib/|test/support/|test/|web/", "")
       |> String.split("/")
       |> Enum.map(&Macro.camelize/1)
 
