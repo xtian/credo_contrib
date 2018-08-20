@@ -42,7 +42,7 @@ defmodule CredoContrib.MixProject do
   # Run "mix help deps" to learn about dependencies.
   defp deps do
     [
-      {:credo, "~> 0.9.0-rc"},
+      {:credo, "~> 0.9"},
       {:ex_doc, ">= 0.0.0", only: :dev}
     ]
   end
