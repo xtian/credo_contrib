@@ -115,7 +115,7 @@ https://github.com/christopheradams/elixir_style_guide#module-attribute-ordering
 
 ---
 
-#### `CredoContrib.Check.ModuleFilePath`
+#### `CredoContrib.Check.Unstable.ModuleFilePath`
 
 Enforces a consistent naming scheme for modules based on their file path
 

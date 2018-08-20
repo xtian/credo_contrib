@@ -1,4 +1,4 @@
-defmodule CredoContrib.Check.ModuleFilePath do
+defmodule CredoContrib.Check.Unstable.ModuleFilePath do
   @moduledoc """
   A module's name should match its file path
   """

@@ -1,7 +1,7 @@
-defmodule CredoContrib.Check.ModuleFilePathTest do
+defmodule CredoContrib.Check.Unstable.ModuleFilePathTest do
   use CredoContrib.TestCase, async: true
 
-  @described_check CredoContrib.Check.ModuleFilePath
+  @described_check CredoContrib.Check.Unstable.ModuleFilePath
 
   test "does not report for conventional module name" do
     """
