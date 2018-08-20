@@ -2,7 +2,7 @@ defmodule CredoContrib.MixProject do
   use Mix.Project
 
   @github_url "https://github.com/xtian/credo_contrib"
-  @version "0.1.0-rc3"
+  @version "0.1.0"
 
   def project do
     [

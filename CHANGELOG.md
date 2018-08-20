@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.1.0
+
+* Check.ModuleFilePath: Mark as unstable
+
+## 0.1.0-rc3
+
+* Check.ModuleFilePath: Handle modules in web/
+
 ## 0.1.0-rc2
 
 * Check.ModuleFilePath: Handle top level module as lib directory (#5)
