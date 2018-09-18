@@ -1,8 +1,8 @@
 # CredoContrib [![Build Status][travis-badge]][travis] [![Hex][hex-badge]][hex]
 
-CredoContrib is a set of community-maintained checks for the [Credo static
-analysis tool][credo]. Many of the checks are implementations of rules from
-[christopheradams/elixir_style_guide][styleguide].
+CredoContrib is a set of additional checks for the [Credo static analysis tool][credo].
+Many of the checks are implementations of rules from
+[christopheradams/elixir_style_guide][styleguide]. Contributions welcome!
 
 [credo]: https://github.com/rrrene/credo
 [hex-badge]: https://img.shields.io/hexpm/v/credo_contrib.svg
