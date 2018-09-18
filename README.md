@@ -18,7 +18,7 @@ Add `credo_contrib` to the list of dependencies in your `mix.exs`:
 ```elixir
 def deps do
   [
-    {:credo_contrib, "~> 0.1.0-rc"}
+    {:credo_contrib, "~> 0.1.0"}
   ]
 end
 ```
