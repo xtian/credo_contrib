@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.1.1
+
+* Make compatible with credo 1.x
+
 ## 0.1.0
 
 * Check.ModuleFilePath: Mark as unstable

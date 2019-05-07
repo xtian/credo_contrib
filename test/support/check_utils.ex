@@ -5,7 +5,7 @@ defmodule CredoContrib.CheckUtils do
   https://git.io/vNxf5
   """
 
-  alias Credo.Execution.Issues
+  alias Credo.Execution.{ExecutionIssues, ExecutionSourceFiles, ExecutionIssues}
   alias Credo.SourceFile
   alias ExUnit.Assertions
 
@@ -74,7 +74,7 @@ defmodule CredoContrib.CheckUtils do
 
   def to_source_file(source, filename) do
     case Credo.SourceFile.parse(source, filename) do
-      %{valid?: true} = source_file ->
+      %{status: :valid} = source_file ->
         source_file
 
       _ ->
@@ -88,8 +88,8 @@ defmodule CredoContrib.CheckUtils do
 
   defp create_config do
     %Credo.Execution{}
-    |> Credo.Execution.SourceFiles.start_server()
-    |> Credo.Execution.Issues.start_server()
+    |> ExecutionSourceFiles.start_server()
+    |> ExecutionIssues.start_server()
   end
 
   defp generate_file_name do
@@ -97,7 +97,7 @@ defmodule CredoContrib.CheckUtils do
   end
 
   defp get_issues_from_source_file(source_file, exec) do
-    Issues.get(exec, source_file)
+    ExecutionIssues.get(exec, source_file)
   end
 
   defp issues_for(source_files, nil, exec, _) when is_list(source_files) do
