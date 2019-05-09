@@ -28,7 +28,7 @@ defmodule CredoContrib.Check.FunctionBlockSyntaxTest do
     |> refute_issues(@described_check)
   end
 
-  test "reports issue for mixed `do:` and `do … end` definitions" do
+  test "reports issue for mixed `do:` and `do ... end` definitions" do
     """
     def foo(1) do
       :foo
