@@ -5,7 +5,7 @@ defmodule CredoContrib.CheckUtils do
   https://git.io/vNxf5
   """
 
-  alias Credo.Execution.{ExecutionIssues, ExecutionSourceFiles, ExecutionIssues}
+  alias Credo.Execution.{ExecutionIssues, ExecutionSourceFiles}
   alias Credo.SourceFile
   alias ExUnit.Assertions
 
