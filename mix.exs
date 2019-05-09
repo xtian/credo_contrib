@@ -2,7 +2,7 @@ defmodule CredoContrib.MixProject do
   use Mix.Project
 
   @github_url "https://github.com/xtian/credo_contrib"
-  @version "0.1.0"
+  @version "0.1.1"
 
   def project do
     [
@@ -42,7 +42,7 @@ defmodule CredoContrib.MixProject do
   # Run "mix help deps" to learn about dependencies.
   defp deps do
     [
-      {:credo, "~> 0.9"},
+      {:credo, "~> 1.0"},
       {:ex_doc, ">= 0.0.0", only: :dev}
     ]
   end
