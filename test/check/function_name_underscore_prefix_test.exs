@@ -12,6 +12,10 @@ defmodule CredoContrib.Check.FunctionNameUnderscorePrefixTest do
     defp foo do
       :foo
     end
+
+    defp __foo__ do
+      :foo
+    end
     """
     |> to_source_file()
     |> refute_issues(@described_check)
