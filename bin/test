@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+
+set -o errexit -o errtrace
+
+cd "$(dirname "${BASH_SOURCE[0]}")/.."
+
+set -o verbose
+
+mix format --check-formatted
+mix compile --all-warnings --warnings-as-errors
+mix credo
+mix test

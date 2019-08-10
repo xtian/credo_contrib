@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+
+set -o errexit -o errtrace
+
+cd "$(dirname "${BASH_SOURCE[0]}")/.."
+
+if [[ -z "$CI" ]]; then
+  if [[ $(command -v asdf) ]]; then
+    asdf plugin-add erlang || true
+    asdf plugin-add elixir || true
+    asdf install
+  fi
+
+  mix local.hex --force --if-missing
+  mix local.rebar --force
+fi
+
+mix deps.get

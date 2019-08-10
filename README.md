@@ -160,3 +160,21 @@ https://github.com/christopheradams/elixir_style_guide#avoid-single-pipelines
 #### Options
 
 * `ignored_locals`: Keyword list of names and arities of local functions to ignore. E.g., `[expect: 3, stub: 3]`
+
+## Development
+
+### Setup
+
+```
+bin/setup
+```
+
+### Running the tests
+
+```
+bin/test
+```
+
+## License
+
+[ISC](LICENSE.md)
