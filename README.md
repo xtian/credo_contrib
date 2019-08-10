@@ -98,9 +98,30 @@ defmodule Foo do
 end
 ```
 
+---
+
 #### `CredoContrib.Check.EmptyDocString`
 
 Disallows `@doc` strings that do not contain any text.
+
+```elixir
+## GOOD
+
+@doc """
+This is a function
+"""
+def bar do
+  :ok
+end
+
+## BAD
+
+@doc """
+"""
+def bar do
+  :ok
+end
+```
 
 ---
 
@@ -109,6 +130,21 @@ Disallows `@doc` strings that do not contain any text.
 Disallows usage of [ExUnit.Case.test/3][test-3] with an empty body.
 
 For unimplemented tests, use [ExUnit.Case.test/1][test-1] and set `ExUnit.start(except: [:not_implemented])`
+
+```elixir
+## GOOD
+
+test "something not implemented"
+
+test "something implemented" do
+  assert 1 + 1 == 2
+end
+
+## BAD
+
+test "something not implemented" do
+end
+```
 
 [test-1]: https://hexdocs.pm/ex_unit/ExUnit.Case.html#test/1
 [test-3]: https://hexdocs.pm/ex_unit/ExUnit.Case.html#test/3
