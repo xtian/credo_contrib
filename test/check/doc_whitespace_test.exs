@@ -34,7 +34,7 @@ defmodule CredoContrib.Check.DocWhitespaceTest do
     |> assert_issue(@described_check)
   end
 
-  test "reports issue for single pipe in function body" do
+  test "reports issue for doc" do
     """
     @doc \"\"\"
 
@@ -44,5 +44,19 @@ defmodule CredoContrib.Check.DocWhitespaceTest do
     """
     |> to_source_file()
     |> assert_issue(@described_check)
+  end
+
+  test "reports issue for docstrings with only whitespace" do
+    """
+    @moduledoc \"\"\"
+
+    \"\"\"
+
+    @doc \"\"\"
+
+    \"\"\"
+    """
+    |> to_source_file()
+    |> assert_issues(@described_check)
   end
 end

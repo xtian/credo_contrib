@@ -18,7 +18,7 @@ defmodule CredoContrib.Check.DocWhitespace do
        when key in [:doc, :moduledoc] and is_binary(string) do
     trimmed = String.trim(string)
 
-    if string == trimmed || string == "#{trimmed}\n" do
+    if string == trimmed || (string == "#{trimmed}\n" && trimmed != "") do
       {ast, issues}
     else
       new_issue = issue_for(issue_meta, meta[:line], key)

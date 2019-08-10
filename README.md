@@ -98,6 +98,10 @@ defmodule Foo do
 end
 ```
 
+#### `CredoContrib.Check.EmptyDocString`
+
+Disallows `@doc` strings that do not contain any text.
+
 ---
 
 #### `CredoContrib.Check.EmptyTestBlock`
