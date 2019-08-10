@@ -114,6 +114,14 @@ https://github.com/christopheradams/elixir_style_guide#multiple-function-defs
 
 ---
 
+#### `CredoContrib.Check.FunctionNameUnderscorePrefix`
+
+Disallows function names prefixed with a single underscore
+
+https://github.com/christopheradams/elixir_style_guide#private-functions-with-same-name-as-public
+
+---
+
 #### `CredoContrib.Check.ModuleAlias`
 
 Disallows `alias __MODULE__` and `@foo __MODULE__`
