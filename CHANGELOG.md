@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.2.0
+
+* Add `CredoContrib` plugin which adds all checks from this package to your configuration
+
 ## 0.1.1
 
 * Make compatible with credo 1.x

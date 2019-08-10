@@ -18,14 +18,29 @@ Add `credo_contrib` to the list of dependencies in your `mix.exs`:
 ```elixir
 def deps do
   [
-    {:credo_contrib, "~> 0.1.0"}
+    {:credo_contrib, "~> 0.2.0"}
   ]
 end
 ```
 
 ## Usage
 
-Add the desired checks to your `.credo.exs`:
+Add `CredoContrib` as a plugin in your `.credo.exs` to enable all checks:
+
+```
+%{
+  configs: [
+    %{
+      name: "default",
+      plugins: [
+        {CredoContrib, []}
+      ]
+    }
+  ]
+}
+```
+
+Or add the desired checks individually:
 
 ```elixir
 %{
