@@ -6,6 +6,7 @@
 * Add Check.EmptyDocString
 * Add Check.EmptyTestBlock
 * Add Check.FunctionNameUnderscorePrefix
+* Check.DocWhitespace: Disallow docstrings that contain only whitespace
 
 ## 0.1.1
 
