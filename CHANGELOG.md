@@ -3,6 +3,7 @@
 ## 0.2.0
 
 * Add `CredoContrib` plugin which adds all checks from this package to your configuration
+* Add Check.FunctionNameUnderscorePrefix
 
 ## 0.1.1
 
