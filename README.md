@@ -27,7 +27,7 @@ end
 
 Add `CredoContrib` as a plugin in your `.credo.exs` to enable all checks:
 
-```
+```elixir
 %{
   configs: [
     %{
