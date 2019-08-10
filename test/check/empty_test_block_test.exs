@@ -15,7 +15,7 @@ defmodule CredoContrib.EmptyTestBlockTest do
     |> refute_issues(@described_check)
   end
 
-  test "reports issue test with empty body" do
+  test "reports issue for test with empty body" do
     """
     test "empty body" do
     end
