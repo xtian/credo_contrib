@@ -100,6 +100,17 @@ end
 
 ---
 
+#### `CredoContrib.Check.EmptyTestBlock`
+
+Disallows usage of [ExUnit.Case.test/3][test-3] with an empty body.
+
+For unimplemented tests, use [ExUnit.Case.test/1][test-1] and set `ExUnit.start(except: [:not_implemented])`
+
+[test-1]: https://hexdocs.pm/ex_unit/ExUnit.Case.html#test/1
+[test-3]: https://hexdocs.pm/ex_unit/ExUnit.Case.html#test/3
+
+---
+
 #### `CredoContrib.Check.FunctionBlockSyntax`
 
 Disallows mixing of `def …, do:` syntax with multiple `def … do … end`-style

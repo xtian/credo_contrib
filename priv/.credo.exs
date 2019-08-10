@@ -4,6 +4,7 @@
       name: "default",
       checks: [
         {CredoContrib.Check.DocWhitespace},
+        {CredoContrib.Check.EmptyTestBlock},
         {CredoContrib.Check.FunctionBlockSyntax},
         {CredoContrib.Check.FunctionNameUnderscorePrefix},
         {CredoContrib.Check.ModuleAlias},
