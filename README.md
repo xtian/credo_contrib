@@ -189,34 +189,6 @@ https://github.com/christopheradams/elixir_style_guide#module-attribute-ordering
 
 ---
 
-#### `CredoContrib.Check.Unstable.ModuleFilePath`
-
-Enforces a consistent naming scheme for modules based on their file path
-
-```elixir
-## GOOD
-
-# lib/foo/bar.ex
-defmodule SomeApp.Foo.Bar do
-end
-
-# lib/controllers/bar_controller.ex
-defmodule SomeApp.BarController do
-end
-
-## BAD
-
-# lib/foo/bar/bar.ex
-defmodule SomeApp.Foo.Bar do
-end
-
-# lib/utils/foo.ex
-defmodule SomeApp.Foo do
-end
-```
-
----
-
 #### `CredoContrib.Check.PublicPrivateFunctionName`
 
 Disallows public and private functions with the same name
