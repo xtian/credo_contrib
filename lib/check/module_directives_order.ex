@@ -18,9 +18,9 @@ defmodule CredoContrib.Check.ModuleDirectivesOrder do
            :import,
            :alias,
            :require,
+           :module_attribute,
            :defstruct,
            :type,
-           :module_attribute,
            :callback,
            :macrocallback,
            :optional_callbacks
@@ -95,6 +95,10 @@ defmodule CredoContrib.Check.ModuleDirectivesOrder do
   defp find_directives({:@, _, [{directive, meta, _}]}, directives)
        when directive in @attributes do
     [{directive, meta} | directives]
+  end
+
+  defp find_directives({:@, _, [{_, meta, _}]}, directives) do
+    [{:module_attribute, meta} | directives]
   end
 
   defp find_directives({directive, meta, _}, directives) when directive in @directives do

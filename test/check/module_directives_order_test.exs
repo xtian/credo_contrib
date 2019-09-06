@@ -12,9 +12,9 @@ defmodule CredoContrib.Check.ModuleDirectivesOrderTest do
       import Baz
       alias Foo.Bar
       require Logger
+      @foo :foo
       defstruct __MODULE__
       @type t :: %__MODULE__{}
-      @module_attribute foo
       @callback bar :: t
       @macrocallback
       @optional_callbacks
@@ -41,7 +41,7 @@ defmodule CredoContrib.Check.ModuleDirectivesOrderTest do
       defstruct __MODULE__
       @callback bar :: t
       @type t :: %__MODULE__{}
-      @module_attribute foo
+      @foo :foo
       @macrocallback
       @optional_callbacks
 
