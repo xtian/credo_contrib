@@ -32,7 +32,6 @@ defmodule CredoContrib.Check.ModuleDirectivesOrder do
     :behaviour,
     :callback,
     :macrocallback,
-    :module_attribute,
     :moduledoc,
     :optional_callbacks,
     :type
@@ -49,7 +48,8 @@ defmodule CredoContrib.Check.ModuleDirectivesOrder do
   @printable_attributes Enum.map(@attributes, &{&1, "@#{&1}"})
   @printable_directives Enum.map(@directives, &{&1, "#{&1}"})
 
-  @printable_order (@printable_attributes ++ @printable_directives)
+  @printable_order @printable_attributes
+                   |> Kernel.++([{:module_attribute, "module attributes"} | @printable_directives])
                    |> Enum.sort_by(fn {k, _} -> Map.fetch!(@order, k) end)
                    |> Enum.map(&elem(&1, 1))
                    |> Enum.join(", ")
