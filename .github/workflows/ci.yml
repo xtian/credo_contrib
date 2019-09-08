@@ -16,8 +16,10 @@ jobs:
         run: bin/setup
         env:
           CI: 1
+          MIX_ENV: test
 
       - name: Run Tests
         run: bin/test
         env:
           CI: 1
+          MIX_ENV: test
