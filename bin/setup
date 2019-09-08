@@ -10,9 +10,9 @@ if [[ -z "$CI" ]]; then
     asdf plugin-add elixir || true
     asdf install
   fi
-
-  mix local.hex --force --if-missing
-  mix local.rebar --force
 fi
+
+mix local.hex --force --if-missing
+mix local.rebar --force
 
 mix deps.get
