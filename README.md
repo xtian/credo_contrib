@@ -1,4 +1,4 @@
-# CredoContrib [![Build Status][travis-badge]][travis] [![Hex][hex-badge]][hex]
+# CredoContrib [![Hex][hex-badge]][hex]
 
 CredoContrib is a set of additional checks for the [Credo static analysis tool][credo].
 Many of the checks are implementations of rules from
@@ -8,8 +8,6 @@ Many of the checks are implementations of rules from
 [hex-badge]: https://img.shields.io/hexpm/v/credo_contrib.svg
 [hex]: https://hex.pm/packages/credo_contrib
 [styleguide]: https://github.com/christopheradams/elixir_style_guide
-[travis-badge]: https://travis-ci.org/xtian/credo_contrib.svg?branch=master
-[travis]: https://travis-ci.org/xtian/credo_contrib
 
 ## Installation
 

@@ -1,0 +1,23 @@
+name: Elixir CI
+
+on: push
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    container:
+      image: elixir:1.9.1-slim
+
+    steps:
+      - uses: actions/checkout@v1
+
+      - name: Install Dependencies
+        run: bin/setup
+        env:
+          CI: 1
+
+      - name: Run Tests
+        run: bin/test
+        env:
+          CI: 1
