@@ -15,8 +15,7 @@ defmodule CredoContrib.Check.FunctionNameUnderscorePrefix do
   end
 
   defp traverse({def_call, meta, [{name, _, _} | _]} = ast, issues, issue_meta)
-       when def_call in [:def, :defp]
-       when is_atom(name) do
+       when def_call in [:def, :defp] and is_atom(name) do
     name = Atom.to_string(name)
 
     if String.starts_with?(name, "_") do
