@@ -11,7 +11,8 @@
         {CredoContrib.Check.ModuleAlias},
         {CredoContrib.Check.ModuleDirectivesOrder},
         {CredoContrib.Check.PublicPrivateFunctionName},
-        {CredoContrib.Check.SingleFunctionPipe}
+        {CredoContrib.Check.SingleFunctionPipe},
+        {CredoContrib.Check.StructsShouldHaveDerive}
       ]
     }
   ]
